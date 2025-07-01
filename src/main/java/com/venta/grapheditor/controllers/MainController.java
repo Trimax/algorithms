@@ -1,5 +1,7 @@
 package com.venta.grapheditor.controllers;
 
+import com.venta.grapheditor.model.Edge;
+import com.venta.grapheditor.model.Vertex;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -13,13 +15,17 @@ import java.util.List;
 
 @Component
 public class MainController {
-    @FXML private Canvas drawingCanvas;
-    @FXML private ToggleGroup toolsToggleGroup;
+    @FXML
+    private Canvas drawingCanvas;
+
+    @FXML
+    private ToggleGroup toolsToggleGroup;
+
+    private final List<Vertex> vertices = new ArrayList<>();
+    private final List<Edge> edges = new ArrayList<>();
 
     private GraphicsContext gc;
     private String currentTool = "SELECT";
-    private List<Vertex> vertices = new ArrayList<>();
-    private List<Edge> edges = new ArrayList<>();
     private Vertex selectedVertex = null;
 
     @FXML
@@ -137,25 +143,21 @@ public class MainController {
         }
     }
 
-    private static class Vertex {
-        double x, y;
-        Vertex(double x, double y) { this.x = x; this.y = y; }
-    }
-
-    private static class Edge {
-        Vertex from, to;
-        Edge(Vertex from, Vertex to) { this.from = from; this.to = to; }
-    }
-
     // Обработчики меню
-    @FXML private void handleNew() {
+    @FXML
+    private void handleNew() {
         vertices.clear();
         edges.clear();
         selectedVertex = null;
         redrawCanvas();
     }
 
-    @FXML private void handleOpen() { }
-    @FXML private void handleSave() {  }
-    @FXML private void handleExit() { System.exit(0); }
+    @FXML
+    private void handleOpen() { }
+
+    @FXML
+    private void handleSave() {  }
+
+    @FXML
+    private void handleExit() { System.exit(0); }
 }
