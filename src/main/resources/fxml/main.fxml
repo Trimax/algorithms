@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.canvas.Canvas?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.venta.grapheditor.controllers.MainController">
+
+    <fx:define>
+        <ToggleGroup fx:id="toolsToggleGroup"/>
+    </fx:define>
+
+    <!-- Меню -->
+    <MenuBar>
+        <Menu text="File">
+            <MenuItem text="New" onAction="#handleNew"/>
+            <MenuItem text="Open..." onAction="#handleOpen"/>
+            <MenuItem text="Save" onAction="#handleSave"/>
+            <SeparatorMenuItem/>
+            <MenuItem text="Exit" onAction="#handleExit"/>
+        </Menu>
+    </MenuBar>
+
+    <!-- Панель инструментов -->
+    <ToolBar>
+        <RadioButton text="Select" toggleGroup="$toolsToggleGroup" userData="SELECT"/>
+        <RadioButton text="Add Vertex" toggleGroup="$toolsToggleGroup" userData="ADD_VERTEX"/>
+        <RadioButton text="Remove Vertex" toggleGroup="$toolsToggleGroup" userData="REMOVE_VERTEX"/>
+        <RadioButton text="Add Edge" toggleGroup="$toolsToggleGroup" userData="ADD_EDGE"/>
+        <RadioButton text="Remove Edge" toggleGroup="$toolsToggleGroup" userData="REMOVE_EDGE"/>
+    </ToolBar>
+
+    <!-- Область рисования -->
+    <ScrollPane fitToWidth="true" fitToHeight="true">
+        <Canvas fx:id="drawingCanvas" width="800" height="600"
+                onMouseClicked="#handleCanvasClick"/>
+    </ScrollPane>
+</VBox>
