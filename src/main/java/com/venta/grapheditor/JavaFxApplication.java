@@ -2,12 +2,9 @@ package com.venta.grapheditor;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.springframework.context.ConfigurableApplicationContext;
-
-import java.net.URL;
 
 public final class JavaFxApplication extends Application {
     private static ConfigurableApplicationContext springContext;
@@ -26,14 +23,10 @@ public final class JavaFxApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        URL fxmlUrl = getClass().getResource("/fxml/main.fxml");
-        System.out.println("FXML URL: " + fxmlUrl); // Должен быть не null
-
         fxmlLoader.setLocation(getClass().getResource("/fxml/main.fxml"));
-        Parent root = fxmlLoader.load();
 
-        Scene scene = new Scene(root, 800, 600);
-        primaryStage.setTitle("JavaFX + Spring Boot + FXML");
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        primaryStage.setTitle("Visibility graph test");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
